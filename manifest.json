@@ -1,0 +1,27 @@
+{
+  "name": "SecAlert",
+  "version": "1.0",
+  "description": "Changes the cookies setting if it is a http webpage",
+  "permissions": ["activeTab", "declarativeContent", "storage", "contentSettings"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_icon": "images/icon.png"
+  },
+  "content_scripts":
+  [
+      {
+          "matches": ["https://*/*"],
+          "js": ["jquery-3.3.1.min.js","reset.js"],
+          "run_at": "document_start"
+      },
+      {
+          "matches": ["http://*/*"],
+          "js": ["jquery-3.3.1.min.js","changeCookieSetting.js"],
+          "run_at": "document_start"
+      }
+  ],
+  "manifest_version": 2
+}
